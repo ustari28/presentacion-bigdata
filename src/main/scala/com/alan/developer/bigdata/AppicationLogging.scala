@@ -6,14 +6,14 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 import kafka.serializer.{DefaultDecoder, StringDecoder}
-import org.apache.spark.SparkConf
+import org.apache.spark.sql.SparkSession
 import org.apache.spark.storage.StorageLevel
 import org.apache.spark.streaming.kafka.KafkaUtils
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 import org.slf4j.{Logger, LoggerFactory}
 
 /**
-  * Hello world!
+  * Logging application.
   *
   */
 object AppicationLogging {
@@ -21,11 +21,11 @@ object AppicationLogging {
 
   def main(args: Array[String]): Unit = {
     import org.elasticsearch.spark._
-    val conf = new SparkConf().setAppName("kafkastreaming").setMaster("local[*]")
-    val ssc = new StreamingContext(conf, Seconds(5))
+    val spark = SparkSession.builder.appName("Logging application").getOrCreate()
+    val ssc = new StreamingContext(spark.sparkContext, Seconds(5))
     val params: Map[String, String] = Map(
-      "metadata.broker.list" -> "127.0.0.1:9092",
-      "zookeeper.connect" -> "127.0.0.1:2181",
+      "metadata.broker.list" -> "kafka:9092",
+      "zookeeper.connect" -> "kafka:2181",
       "group.id" -> "spark-streaming",
       "zookeeper.connection.timeout.ms" -> "5000"
     )
