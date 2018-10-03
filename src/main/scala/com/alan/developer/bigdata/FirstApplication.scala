@@ -1,15 +1,13 @@
 package com.alan.developer.bigdata
 
 import org.apache.spark.SparkConf
-import org.apache.spark.sql.types.StructType
-import org.apache.spark.sql.{Row, SparkSession}
+import org.apache.spark.sql.SparkSession
 
 /**
   * First application.
-  */git
+  */
 object FirstApplication {
 
-  val schema: StructType =
   def main(args: Array[String]): Unit = {
     //val spark = SparkSession.builder.appName("First application").getOrCreate()
     val spark = SparkSession.builder.config(new SparkConf().setAppName("First application")
