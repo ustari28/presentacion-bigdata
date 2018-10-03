@@ -9,6 +9,8 @@
         <scala.version>2.10.5</scala.version>
         <scala.short.version>2.10</scala.short.version>
         <spark.version>1.6.0</spark.version>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
     </properties>
 
     <repositories>
@@ -32,7 +34,7 @@
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
             <version>${scala.version}</version>
-            <!--<scope>provided</scope>-->
+            <scope>provided</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
         <dependency>
@@ -56,19 +58,21 @@
                     <artifactId>commons-codec</artifactId>
                 </exclusion>
             </exclusions>
-            <!--<scope>provided</scope>-->
+            <scope>provided</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-sql -->
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-sql_${scala.short.version}</artifactId>
             <version>${spark.version}</version>
-            <!--<scope>provided</scope>-->
+            <scope>provided</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-hive -->
         <dependency>
-            <groupId>org.elasticsearch</groupId>
-            <artifactId>elasticsearch-spark-20_2.11</artifactId>
-            <version>6.4.1</version>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-hive_${scala.short.version}</artifactId>
+            <version>${spark.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -103,7 +107,7 @@
                 <configuration>
                     <scalaVersion>${scala.version}</scalaVersion>
                     <args>
-                        <arg>-target:jvm-1.5</arg>
+                        <arg>-target:jvm-1.7</arg>
                     </args>
                 </configuration>
             </plugin>
