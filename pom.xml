@@ -6,9 +6,9 @@
     <version>1.0-SNAPSHOT</version>
     <inceptionYear>2008</inceptionYear>
     <properties>
-        <scala.version>2.11.6</scala.version>
-        <scala.short.version>2.11</scala.short.version>
-        <spark.version>2.3.1</spark.version>
+        <scala.version>2.10.5</scala.version>
+        <scala.short.version>2.10</scala.short.version>
+        <spark.version>1.6.0</spark.version>
     </properties>
 
     <repositories>
@@ -58,35 +58,12 @@
             </exclusions>
             <!--<scope>provided</scope>-->
         </dependency>
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-streaming-kafka-0-8_${scala.short.version}</artifactId>
-            <version>${spark.version}</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-sql -->
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-sql_${scala.short.version}</artifactId>
             <version>${spark.version}</version>
             <!--<scope>provided</scope>-->
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.101tec/zkclient -->
-        <dependency>
-            <groupId>com.101tec</groupId>
-            <artifactId>zkclient</artifactId>
-            <version>0.3</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
-        <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-            <version>1.11</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka-clients</artifactId>
-            <version>LATEST</version>
         </dependency>
         <dependency>
             <groupId>org.elasticsearch</groupId>
