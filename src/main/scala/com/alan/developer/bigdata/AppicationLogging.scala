@@ -11,6 +11,7 @@ import org.apache.spark.storage.StorageLevel
 import org.apache.spark.streaming.kafka.KafkaUtils
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 import org.slf4j.{Logger, LoggerFactory}
+import org.elasticsearch.spark._
 
 /**
   * Logging application.
@@ -20,7 +21,7 @@ object AppicationLogging {
   val log: Logger = LoggerFactory.getLogger(getClass)
 
   def main(args: Array[String]): Unit = {
-    import org.elasticsearch.spark._
+
     val spark = SparkSession.builder.appName("Logging application").getOrCreate()
     val ssc = new StreamingContext(spark.sparkContext, Seconds(5))
     val params: Map[String, String] = Map(
