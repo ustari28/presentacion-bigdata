@@ -14,7 +14,7 @@ import org.slf4j.{Logger, LoggerFactory}
 import org.elasticsearch.spark._
 
 /**
-  * Logging application.
+  * Logging application. Arguments kafka zookeper.
   *
   */
 object AppicationLogging {
@@ -22,18 +22,18 @@ object AppicationLogging {
 
   def main(args: Array[String]): Unit = {
 
-    val spark = SparkSession.builder.appName("Logging application").getOrCreate()
+    val spark = SparkSession.builder.appName("Retail application").getOrCreate()
     val ssc = new StreamingContext(spark.sparkContext, Seconds(5))
     val params: Map[String, String] = Map(
-      "metadata.broker.list" -> "kafka:9092",
-      "zookeeper.connect" -> "kafka:2181",
-      "group.id" -> "spark-streaming",
+      "metadata.broker.list" -> args(0),
+      "zookeeper.connect" -> args(1),
+      "group.id" -> "retail-streaming",
       "zookeeper.connection.timeout.ms" -> "5000"
     )
-    val topics = List("logs-app")
+    val topics = List("retail-app")
     val kafkaStream = KafkaUtils.createStream[Array[Byte], String, DefaultDecoder, StringDecoder](ssc, params,
       topics.map((_, 1)).toMap, StorageLevel.MEMORY_ONLY_SER).map(_._2)
-    val index = "logs-".concat(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHH")))
+    val index = "retail-".concat(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHH")))
       .concat("/log")
     kafkaStream.map(linea => linea.split(";").toSeq)
       .map(x => Retail(x(0), x(1), x(2), x(3).toInt, x(4), x(5).replace(",", ".").toFloat,
