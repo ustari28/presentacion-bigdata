@@ -1,7 +1,7 @@
 # Launches application spark-submit
 We use shade plugin for packaging all mandatory dependencies.
 ```
-spark-submit --conf spark.es.nodes=elasticsearch --class com.alan.developer.bigdata.CentralLogging "logging-streaming-kafka-1.0-SNAPSHOT.jar" "kafka-server" "zookeeper-server"
+spark-submit --master spark://spark-master:7077  --jars /data/json4s-jackson_2.11-3.6.1.jar --conf spark.es.nodes=elasticsearch --class com.alan.developer.bigdata.RequestLogging /data/logging-streaming-kafka-1.0-SNAPSHOT.jar "kafka:9092" "kafka:2181"
 spark-submit --conf spark.es.nodes=elasticsearch --class com.alan.developer.bigdata.RequestLogging "logging-streaming-kafka-1.0-SNAPSHOT.jar" "kafka-server" "zookeeper-server"
 ```
 We get a sample of records from ES with
@@ -71,6 +71,7 @@ http://localhost:9200/_template/logging
 ```
 Mapping *logsapp* for indexes ES:
 ```
+http://localhost:9200/_template/logsapp
 {
   "index_patterns": [
     "logsapp-*"
