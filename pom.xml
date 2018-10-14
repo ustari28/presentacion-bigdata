@@ -111,10 +111,11 @@
             <artifactId>elasticsearch-spark-20_${scala.short.version}</artifactId>
             <version>6.4.1</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.spray/spray-json -->
         <dependency>
-            <groupId>org.json4s</groupId>
-            <artifactId>json4s-jackson_${scala.short.version}</artifactId>
-            <version>3.6.1</version>
+            <groupId>io.spray</groupId>
+            <artifactId>spray-json_${scala.short.version}</artifactId>
+            <version>1.3.4</version>
         </dependency>
 
         <dependency>
