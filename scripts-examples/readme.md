@@ -43,14 +43,14 @@ create database bigdata;
 crear tabla
 ```jql
 create table bigdata.retail(
-invoiceno STRING,
-stockcode STRING,
-description STRING,
-quantity INT,
-invoicedate STRING,
-unitprice FLOAT,
-customerid BIGINT,
-country STRING
+    invoiceno STRING,
+    stockcode STRING,
+    description STRING,
+    quantity INT,
+    invoicedate STRING,
+    unitprice FLOAT,
+    customerid BIGINT,
+    country STRING
 );
 ```
 ver el sql usado para crear la tabla
@@ -60,14 +60,14 @@ show create table bigdata.retail;
 crear tabla con origen
 ````jql
 create table bigdata.retail(
-invoiceno STRING,
-stockcode STRING,
-description STRING,
-quantity INT,
-invoicedate STRING,
-unitprice FLOAT,
-customerid BIGINT,
-country STRING
+    invoiceno STRING,
+    stockcode STRING,
+    description STRING,
+    quantity INT,
+    invoicedate STRING,
+    unitprice FLOAT,
+    customerid BIGINT,
+    country STRING
 ) location '/bigdata/retail';
 ````
 borrar la tabla
@@ -77,14 +77,14 @@ drop table bigdata.retail;
 crear tabla con separador, cabecera y origen
 ````jql
 create table bigdata.retail(
-invoiceno STRING,
-stockcode STRING,
-description STRING,
-quantity INT,
-invoicedate STRING,
-unitprice FLOAT,
-customerid BIGINT,
-country STRING
+    invoiceno STRING,
+    stockcode STRING,
+    description STRING,
+    quantity INT,
+    invoicedate STRING,
+    unitprice FLOAT,
+    customerid BIGINT,
+    country STRING
 )
 row format delimited fields terminated by ';'
 location '/bigdata/retail'
@@ -93,14 +93,14 @@ TBLPROPERTIES ("skip.header.line.count"="1");
 crear tabla y cargarla luego
 ````jql
 create table bigdata.retail(
-invoiceno STRING,
-stockcode STRING,
-description STRING,
-quantity INT,
-invoicedate STRING,
-unitprice FLOAT,
-customerid BIGINT,
-country STRING
+    invoiceno STRING,
+    stockcode STRING,
+    description STRING,
+    quantity INT,
+    invoicedate STRING,
+    unitprice FLOAT,
+    customerid BIGINT,
+    country STRING
 )
 row format delimited fields terminated by ';';
 ````
@@ -116,16 +116,19 @@ as select * from bigdata.retail;
 Cargar ficheros comprimidos
 ````jql
 create table bigdata.retail(
-invoiceno STRING,
-stockcode STRING,
-description STRING,
-quantity INT,
-invoicedate STRING,
-unitprice FLOAT,
-customerid BIGINT,
-country string
+    invoiceno STRING,
+    stockcode STRING,
+    description STRING,
+    quantity INT,
+    invoicedate STRING,
+    unitprice FLOAT,
+    customerid BIGINT,
+    country string
 )
 row format delimited fields terminated by ';'
 TBLPROPERTIES ("skip.header.line.count"="1");
+````
+Carga de ficheros a tabla
+````jshelllanguage
 load data inpath '/bigdata/retail-compress/online-retail.txt.bz2' overwrite into table bigdata.retail;
 ````
