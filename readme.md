@@ -226,11 +226,11 @@ http://localhost:9200/_template/logsapp
 }
 ```
 
-# Creates topic
+# Create topic
 ```
 kafka-topics.bat --create --topic logs-app --partitions 1 --replication-factor 1 --zookeeper kafka:2181
 ```
-# Loads data
+# Load data
 ```
 kafka-console-producer.bat --topic logs-app --broker-list kafka:9092 < online_retail_500.txt
 ```
