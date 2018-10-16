@@ -1,34 +1,34 @@
-# Ejercicio 1
-Crear Directorio
+# Example 1
+Create dir
 ```jshelllanguage
 hadoop fs -mkdir /bigdata/ficheros
 ```
-Copiar un fichero del sistema local a HDFS
+Copy file from local system to HDFS System
 ```jshelllanguage
 hadoop fs -copyFromLocal /media/sf_ficheros-bd/bank.csv /bigdata/ficheros/
 ```
-Copiar un fichero entre sistemas de archivos
+Copy a file between file systems
 ```jshelllanguage
 hadoop fs -put /media/sf_ficheros-bd/bank.csv /bigdata/ficheros/
 ```
-Lista ficheros en HDFS
+List files in HDFS system
 ```jshelllanguage
 hadoop fs -ls /bigdata/ficheros
 ```
-Borrar un fichero en HDFS
+Remove a file from HDFS system
 ```jshelllanguage
 hadoop fs -rm /bigdata/ficheros/bank.csv
 ```
-Copiar un fichero desde HDFS al sistema local
+Copy a file from HDFS system to local system
 ```jshelllanguage
 hadoop fs -copyToLocal /bigdata/ficheros/bank.csv /media/sf_ficheros-bd/
 ```
-Descargar un fichero desde HDFS
+Download a file from HDFS system to local system
 ```jshelllanguage
 hadoop fs -get /bigdata/ficheros/bank.csv /media/sf_ficheros-bd/
 ```
 
-# Ejercicio 2
+# Example 2
 ```jshelllanguage
 split -l 10000 fichero
 ```
@@ -36,11 +36,11 @@ split -l 10000 fichero
 hadoop fs -mkdir /bigdata/retail
 haddop fs -put presentacion/online-retail.txt /bigdata/retail
 ```
-crear esquema
+Create schema
 ```jql
 create database bigdata;
 ```
-crear tabla
+Create table
 ```jql
 create table bigdata.retail(
     invoiceno STRING,
@@ -57,7 +57,7 @@ ver el sql usado para crear la tabla
 ````jql
 show create table bigdata.retail;
 ````
-crear tabla con origen
+Create a table from from source files
 ````jql
 create table bigdata.retail(
     invoiceno STRING,
@@ -70,11 +70,11 @@ create table bigdata.retail(
     country STRING
 ) location '/bigdata/retail';
 ````
-borrar la tabla
+Delete table
 ````jql
 drop table bigdata.retail;
 ````
-crear tabla con separador, cabecera y origen
+Create a table with separator, header and source
 ````jql
 create table bigdata.retail(
     invoiceno STRING,
@@ -90,7 +90,7 @@ row format delimited fields terminated by ';'
 location '/bigdata/retail'
 TBLPROPERTIES ("skip.header.line.count"="1");
 ````
-crear tabla y cargarla luego
+Create table first and upload later
 ````jql
 create table bigdata.retail(
     invoiceno STRING,
@@ -104,16 +104,16 @@ create table bigdata.retail(
 )
 row format delimited fields terminated by ';';
 ````
-Cargar ficheros en tablas
+Upload files into tables
 ```jshelllanguage
 load data inpath '/bigdata/retail/' overwrite into table bigdata.retail;
 ```
-Particionar una tabla
+Partition a table
 ````jql
 create table bigdata.retail-par partitioned by (country) stored as parquet
 as select * from bigdata.retail;
 ````
-Cargar ficheros comprimidos
+Upload compress files into tables
 ````jql
 create table bigdata.retail(
     invoiceno STRING,
@@ -128,20 +128,21 @@ create table bigdata.retail(
 row format delimited fields terminated by ';'
 TBLPROPERTIES ("skip.header.line.count"="1");
 ````
-Carga de ficheros a tabla
+Upload files into a table
 ````jshelllanguage
 load data inpath '/bigdata/retail-compress/online-retail.txt.bz2' overwrite into table bigdata.retail;
 ````
-# Ejercicio 3
-Configuramos hdfs con spark
+
+# Example 3
+Set up Hive with spark
 ````jshelllanguage
 cp /usr/lib/hive/conf/hive-site.xml  /usr/lib/spark/conf/
 ````
-Arrancamos spark-shell
+Launch spark-shell
 ```jshelllanguage
 $SPARK_HOME/bin/spark-shell
 ```
-Arrancamos con Scala
+Starting with Scala
 ````scala
 import sqlContext.implicits._
 import org.apache.spark.sql._
@@ -151,7 +152,7 @@ fich take 10
 val df_retail = fich.map(_.split(";").toSeq).map(x => Retail(x(0),x(1),x(2),x(3),x(4),x(5),x(6),x(7))).toDF
 val df_retail = fich.map(_.split(";").toSeq).map(x => Retail(x(0),x(1),x(2),x(3).toInt,x(4),x(5).toFloat,x(6),x(7))).toDF
 ````
-Creamos otra tabla en hive
+Create table into hive again for spark example
 ````jql
 create table bigdata.retail(
     invoiceno STRING,
@@ -165,6 +166,7 @@ create table bigdata.retail(
 )
 stored as parquet;
 ````
+Meshing spark and hive
 Combinamos spark y hive
 ````scala
 import sqlContext.implicits._

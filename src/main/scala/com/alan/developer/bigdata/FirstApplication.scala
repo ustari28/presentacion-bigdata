@@ -5,6 +5,7 @@ import org.apache.spark.sql.SparkSession
 
 /**
   * First application.
+  * Args(0) - Full path file.
   */
 object FirstApplication {
 
