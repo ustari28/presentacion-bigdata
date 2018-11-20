@@ -166,8 +166,7 @@ create table bigdata.retail(
 )
 stored as parquet;
 ````
-Meshing spark and hive
-Combinamos spark y hive
+Spark and hive
 ````scala
 import sqlContext.implicits._
 import org.apache.spark.sql._
