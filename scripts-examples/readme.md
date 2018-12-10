@@ -179,3 +179,8 @@ df.write.mode(“overwrite”).insertInto(“bigdata.retail”)
 invalidate medatada bigdata.retail
 df count
 ````
+More Spark
+````scala
+spark.read.format("csv").option("header", "true").option("delimiter",";").load("")
+spark.read.option("header", "true").csv("")
+````
