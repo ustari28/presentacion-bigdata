@@ -184,3 +184,9 @@ More Spark
 spark.read.format("csv").option("header", "true").option("delimiter",";").load("")
 spark.read.option("header", "true").csv("")
 ````
+Using sql functions in Dataframes
+````scala
+case class Retail(InvoiceNo: String,StockCode: String,Description: String,Quantity: Integer,InvoiceDate: String,UnitPrice: Float,CustomerID: String,Country: String)
+val raw = spark.read.format("csv").option("header", "true").option("delimiter",";").load("online_retail.txt").withColumn("Quantity", 'Quantity.cast(IntegerType)).withColumn("UnitPrice", when(col("UnitPrice").isNull,
+ lit("0.0")).otherwise(regexp_replace(col("UnitPrice"),",",".")).cast(FloatType)).as[Retail]
+````
