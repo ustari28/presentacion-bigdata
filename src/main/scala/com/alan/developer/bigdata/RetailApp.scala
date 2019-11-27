@@ -1,23 +1,14 @@
 package com.alan.developer.bigdata
 
-
 import java.sql.Timestamp
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
-import kafka.serializer.{DefaultDecoder, StringDecoder}
-import org.apache.spark.sql.SparkSession
-import org.apache.spark.storage.StorageLevel
-import org.apache.spark.streaming.kafka.KafkaUtils
-import org.apache.spark.streaming.{Seconds, StreamingContext}
-import org.slf4j.{Logger, LoggerFactory}
-import org.elasticsearch.spark._
 
 /**
   * Logging application. Arguments kafka zookeper.
   *
   */
 object AppicationLogging {
+  /**
   val log: Logger = LoggerFactory.getLogger(getClass)
 
   def main(args: Array[String]): Unit = {
@@ -42,6 +33,7 @@ object AppicationLogging {
     ssc.start()
     ssc.awaitTermination()
   }
+   */
 }
 
 case class Retail(invoiceNo: String, stockCode: String, description: String, quantity: Integer, invoiceDate: String,

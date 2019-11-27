@@ -1,22 +1,10 @@
 package com.alan.developer.bigdata
 
-import java.time.format.DateTimeFormatter
-import java.time.{Instant, LocalDateTime, ZoneOffset}
-
-import com.alan.developer.bigdata.model.{Endpoint, Request}
-import kafka.serializer.{DefaultDecoder, StringDecoder}
-import org.apache.spark.sql.SparkSession
-import org.apache.spark.storage.StorageLevel
-import org.apache.spark.streaming.kafka.KafkaUtils
-import org.apache.spark.streaming.{Seconds, StreamingContext}
-import org.elasticsearch.spark._
-import org.slf4j.{Logger, LoggerFactory}
-
 /**
   * Central de procesado de logs.
   */
 object RequestLogging {
-
+/**
   val log: Logger = LoggerFactory.getLogger(getClass)
 
   def main(args: Array[String]): Unit = {
@@ -54,5 +42,6 @@ object RequestLogging {
     ssc.start()
     ssc.awaitTermination()
   }
+ */
 }
 
