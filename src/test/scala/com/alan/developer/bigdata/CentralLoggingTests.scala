@@ -9,7 +9,7 @@ import org.apache.kafka.streams.test.{ConsumerRecordFactory, OutputVerifier}
 import org.apache.kafka.streams.{StreamsBuilder, StreamsConfig, TopologyTestDriver}
 
 class CentralLoggingTests extends BaseSpec {
-
+/**
   test("Testing kafka streaming") {
     val builder = new StreamsBuilder();
     builder.stream("logging") to ("other");
@@ -37,5 +37,5 @@ class CentralLoggingTests extends BaseSpec {
 
     //finish
     testDriver close
-  }
+  }*/
 }
